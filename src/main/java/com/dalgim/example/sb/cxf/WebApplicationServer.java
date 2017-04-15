@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SbClCxfWsSslP12ProducerApplication {
+public class WebApplicationServer {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SbClCxfWsSslP12ProducerApplication.class, args);
+		SpringApplication.run(WebApplicationServer.class, args);
 	}
 }

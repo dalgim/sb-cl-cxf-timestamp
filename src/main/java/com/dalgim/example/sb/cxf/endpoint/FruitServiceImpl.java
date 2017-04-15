@@ -2,7 +2,6 @@ package com.dalgim.example.sb.cxf.endpoint;
 
 import com.dalgim.example.sb.cxf.model.Fruit;
 import org.springframework.stereotype.Service;
-
 import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.Collection;
