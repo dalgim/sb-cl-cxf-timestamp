@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.dalgim.example.sb.cxf</groupId>
-	<artifactId>sb-cl-cxf-ws-ssl-p12-producer</artifactId>
+	<artifactId>sb-cl-cxf-wss-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>sb-cl-cxf-ws-ssl-p12-producer</name>
-	<description>Spring Boot Cxf Soap Contract Last Producer, SSL P12</description>
+	<name>sb-cl-cxf-wss-server</name>
+	<description>Spring Boot, Cxf, Soap, Contract Last, WS Security - Server</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
