@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="FruitServiceService" targetNamespace="http://endpoint.cxf.sb.example.dalgim.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://endpoint.cxf.sb.example.dalgim.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="FruitServiceService" targetNamespace="http://endpoint.wsstimestamp.cxf.sb.example.dalgim.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://endpoint.wsstimestamp.cxf.sb.example.dalgim.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-<xs:schema xmlns:tns="http://endpoint.cxf.sb.example.dalgim.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://endpoint.cxf.sb.example.dalgim.com/" version="1.0">
+<xs:schema xmlns:tns="http://endpoint.wsstimestamp.cxf.sb.example.dalgim.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://endpoint.wsstimestamp.cxf.sb.example.dalgim.com/" version="1.0">
 
   <xs:element name="getAllFruit" type="tns:getAllFruit"/>
 
@@ -30,12 +30,12 @@
 
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="getAllFruitResponse">
-    <wsdl:part name="parameters" element="tns:getAllFruitResponse">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="getAllFruit">
     <wsdl:part name="parameters" element="tns:getAllFruit">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllFruitResponse">
+    <wsdl:part name="parameters" element="tns:getAllFruitResponse">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="FruitService">

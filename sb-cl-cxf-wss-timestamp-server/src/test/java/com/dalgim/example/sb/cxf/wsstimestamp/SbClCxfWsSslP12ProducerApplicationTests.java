@@ -11,6 +11,7 @@ public class SbClCxfWsSslP12ProducerApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		assert true;
 	}
 
 }

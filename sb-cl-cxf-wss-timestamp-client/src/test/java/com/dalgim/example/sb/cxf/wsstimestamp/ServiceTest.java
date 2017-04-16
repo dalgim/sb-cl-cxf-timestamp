@@ -1,7 +1,9 @@
-package com.dalgim.example.sb.cxf;
+package com.dalgim.example.sb.cxf.wsstimestamp;
 
+import com.dalgim.example.sb.cxf.wsstimestamp.endpoint.FruitService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -12,8 +14,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ServiceTest {
 
+    @Autowired
+    private FruitService fruitService;
+
     @Test
     public void name() throws Exception {
+        fruitService.getAllFruit();
         assert true;
     }
 }
