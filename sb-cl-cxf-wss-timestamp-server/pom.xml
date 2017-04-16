@@ -33,17 +33,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -106,7 +96,7 @@
 						<id>process-classes</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>com.dalgim.example.sb.cxf.endpoint.FruitService</className>
+							<className>com.dalgim.example.sb.cxf.wsstimestamp.endpoint.FruitService</className>
 							<genWsdl>true</genWsdl>
 							<verbose>true</verbose>
 						</configuration>

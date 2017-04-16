@@ -1,7 +1,7 @@
-package com.dalgim.example.sb.cxf.config;
+package com.dalgim.example.sb.cxf.wsstimestamp.config;
 
-import com.dalgim.example.sb.cxf.endpoint.FruitService;
-import com.dalgim.example.sb.cxf.endpoint.FruitServiceImpl;
+import com.dalgim.example.sb.cxf.wsstimestamp.endpoint.FruitService;
+import com.dalgim.example.sb.cxf.wsstimestamp.endpoint.FruitServiceImpl;
 import com.google.common.collect.Maps;
 import org.apache.cxf.Bus;
 import org.apache.cxf.bus.spring.SpringBus;
@@ -19,11 +19,11 @@ import java.util.Map;
 
 import static org.apache.wss4j.common.ConfigurationConstants.ACTION;
 import static org.apache.wss4j.common.ConfigurationConstants.MUST_UNDERSTAND;
-import static org.apache.wss4j.common.ConfigurationConstants.PASSWORD_TYPE;
-import static org.apache.wss4j.common.ConfigurationConstants.PW_CALLBACK_CLASS;
-import static org.apache.wss4j.common.ConfigurationConstants.SIG_KEY_ID;
-import static org.apache.wss4j.common.ConfigurationConstants.SIG_PROP_FILE;
-import static org.apache.wss4j.common.ConfigurationConstants.USER;
+import static org.apache.wss4j.common.ConfigurationConstants.REQUIRE_TIMESTAMP_EXPIRES;
+import static org.apache.wss4j.common.ConfigurationConstants.TIMESTAMP_PRECISION;
+import static org.apache.wss4j.common.ConfigurationConstants.TIMESTAMP_STRICT;
+import static org.apache.wss4j.common.ConfigurationConstants.TTL_FUTURE_TIMESTAMP;
+import static org.apache.wss4j.common.ConfigurationConstants.TTL_TIMESTAMP;
 
 /**
  * Created by dalgim on 08.04.2017.
@@ -64,13 +64,19 @@ public class WebServiceConfig {
         Map<String, Object> securityProperties = Maps.newHashMap();
         securityProperties.put(ACTION, "Timestamp");
         securityProperties.put(MUST_UNDERSTAND, "true");
+        securityProperties.put(TIMESTAMP_PRECISION, "true");
+        securityProperties.put(TTL_TIMESTAMP, "60");
         return new WSS4JOutInterceptor(securityProperties);
     }
 
     private WSS4JInInterceptor wss4JInInterceptor() {
-        Map<String, Object> properties = Maps.newHashMap();
-        properties.put(ACTION, "Timestamp");
-        return new WSS4JInInterceptor(properties);
+        Map<String, Object> securityProperties = Maps.newHashMap();
+        securityProperties.put(ACTION, "Timestamp");
+        securityProperties.put(TTL_TIMESTAMP, "40");
+        securityProperties.put(TTL_FUTURE_TIMESTAMP, "30");
+        securityProperties.put(REQUIRE_TIMESTAMP_EXPIRES, "true");
+        securityProperties.put(TIMESTAMP_STRICT, "true");
+        return new WSS4JInInterceptor(securityProperties);
     }
 
     private LoggingInInterceptor loggingInInterceptor() {
