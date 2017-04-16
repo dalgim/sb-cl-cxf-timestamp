@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.dalgim.example.sb.cxf</groupId>
-	<artifactId>sb-cl-cxf-wss-server</artifactId>
+	<artifactId>sb-cl-cxf-wss-timestamp-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>sb-cl-cxf-wss-server</name>
-	<description>Spring Boot, Cxf, Soap, Contract Last, WS Security - Server</description>
+	<name>sb-cl-cxf-wss-timestamp-client</name>
+	<description>Spring Boot, Cxf, Soap, Contract Last, WS Security with timestamp - Client</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -23,11 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-		<spock.version>1.0-groovy-2.4</spock.version>
-		<groovy.version>2.4.4</groovy.version>
-		<guava.version>21.0</guava.version>
 		<cxf.version>3.1.10</cxf.version>
-		<cglib.version>3.2.5</cglib.version>
 	</properties>
 
 	<dependencies>
@@ -55,12 +51,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
@@ -68,27 +58,15 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-ws-security</artifactId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.spockframework</groupId>
-			<artifactId>spock-core</artifactId>
-			<version>${spock.version}</version>
-			<scope>test</scope>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+			<version>${cxf.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>${groovy.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>${cglib.version}</version>
-			<scope>test</scope>
-		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -98,21 +76,41 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-java2ws-plugin</artifactId>
-				<version>3.1.10</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<wsdlUrls>
+						<wsdlUrl>src/main/resources/wsdl/FruitService.wsdl</wsdlUrl>
+					</wsdlUrls>
+					<sourceDestDir>target/generated-sources/FruitService</sourceDestDir>
+					<vmArgs>
+						<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+					</vmArgs>
+				</configuration>
 				<executions>
 					<execution>
-						<id>process-classes</id>
-						<phase>process-classes</phase>
-						<configuration>
-							<className>com.dalgim.example.sb.cxf.endpoint.FruitService</className>
-							<genWsdl>true</genWsdl>
-							<verbose>true</verbose>
-						</configuration>
 						<goals>
-							<goal>java2ws</goal>
+							<goal>wsimport</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-sources/FruitService</source>
+							</sources>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
